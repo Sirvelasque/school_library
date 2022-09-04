@@ -1,5 +1,5 @@
 require './nameable'
-require './rental.rb'
+require './rental'
 class Person < Nameable
   attr_reader :id
   attr_accessor :age, :name, :rentals
@@ -10,7 +10,7 @@ class Person < Nameable
     @name = name
     @age = age
     @parent_permision = parent_permision
-    rentals = []
+    @rentals = []
   end
 
   def can_use_services?
