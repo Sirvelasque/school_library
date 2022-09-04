@@ -4,7 +4,7 @@ require './student'
 require './book'
 require './rental'
 
-class Ap
+class App
   attr_reader :persons, :books, :rentals
 
   def initialize
@@ -13,7 +13,7 @@ class Ap
     @rentals = []
   end
 
-  def add_student(classroom, age, name, permission)
+  def add_student(classroom, age, name, _permission)
     @persons << Student.new(classroom, age, name)
     puts 'Person created successfully'
   end
@@ -29,7 +29,7 @@ class Ap
   end
 
   def add_rental(date, book, person)
-    @rentals << Rental.new(date, @books[book-1], @persons[person-1])
+    @rentals << Rental.new(date, @books[book - 1], @persons[person - 1])
     puts 'Rental created successfully'
   end
 
@@ -57,12 +57,12 @@ class Ap
   def rental_list(id)
     puts "ID of person: #{id}"
     @persons.each do |person|
-      if person.id == id
-        puts 'Rentals:'
-        person.rentals.each_with_index do |item, i|
-          puts " #{i}) Date: #{item.date}, Book: #{item.book.title} writed by #{item.book.author}"
-        end
+      next unless person.id == id
+
+      puts 'Rentals:'
+      person.rentals.each_with_index do |item, i|
+        puts " #{i}) Date: #{item.date}, Book: #{item.book.title} writed by #{item.book.author}"
       end
     end
-
+  end
 end
